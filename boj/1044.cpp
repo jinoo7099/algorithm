@@ -58,7 +58,6 @@ int main() {
 
     int resMask1 = 1e9;
     int resMask2 = 1e9;
-    cout << "!!!" << endl;
     for (int i = 0; i < v1.size(); i++) {
         pair<int, int> k = make_pair(-v1[i].first, 0);
         auto it = upper_bound(v2.begin(), v2.end(), k);

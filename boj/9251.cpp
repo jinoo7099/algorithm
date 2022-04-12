@@ -29,13 +29,9 @@ int main() {
             }
         }
     }
-    cout << dp[str1.size()][str2.size()] << endl;
-    // for (int i = 0; i <= str1.size(); i++) {
-    //     for (int j = 0; j <= str2.size(); j++) {
-    //         cout << dp[i][j] << ' ';
-    //     }
-    //     cout << endl;
-    // }
+    asd
+            cout
+        << dp[str1.size()][str2.size()] << endl;
 
     return 0;
 }

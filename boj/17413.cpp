@@ -12,6 +12,13 @@ using namespace std;
 const int dx[4] = {-1, 0, 1, 0};
 const int dy[4] = {0, 1, 0, -1};
 
+void printStack(stack<char>& st) {
+    while (!st.empty()) {
+        cout << st.top();
+        st.pop();
+    }
+}
+
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
@@ -24,32 +31,22 @@ int main() {
         char c = str[i];
 
         if (c == '<') {
-            while (!st.empty()) {
-                cout << st.top();
-                st.pop();
-            }
+            printStack(st);
             flag = true;
-        }
-
-        if (flag) {
+            cout << c;
+        } else if (c == '>') {
+            flag = false;
+            cout << c;
+        } else if (flag) {
+            cout << c;
+        } else if (c == ' ') {
+            printStack(st);
             cout << c;
         } else {
-            if (c == ' ') {
-                while (!st.empty()) {
-                    cout << st.top();
-                    st.pop();
-                }
-                cout << ' ';
-            } else
-                st.push(c);
-        }
-        if (c == '>') {
-            flag = false;
+            st.push(c);
         }
     }
-    while (!st.empty()) {
-        cout << st.top();
-        st.pop();
-    }
+    printStack(st);
+
     return 0;
 }

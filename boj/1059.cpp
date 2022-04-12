@@ -32,14 +32,12 @@ int main() {
         return 0;
     }
     st--;
-    // cout << st << ' ' << en << endl;
     int ans = 0;
 
     for (int i = arr[st] + 1; i <= arr[en] - 1; i++) {
         for (int j = i + 1; j <= arr[en] - 1; j++) {
             if (i <= n && n <= j) {
                 ans++;
-                cout << i << ' ' << j << endl;
             }
         }
     }

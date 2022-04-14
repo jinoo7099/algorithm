@@ -97,8 +97,9 @@ void solve() {
     // get max money
     scc_vis[scc_id[s]] = 1;
     getMax(scc_id[s], scc_sum[scc_id[s]]);
-
-    cout << res << endl;
+    aa
+            cout
+        << res << endl;
 }
 
 int main() {

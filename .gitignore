@@ -1,4 +1,5 @@
 template/
+coders/
 *.out
 tempCodeRunnerFile.cpp
 .vscode/

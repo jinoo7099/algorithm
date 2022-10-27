@@ -2,7 +2,8 @@ coders/
 *.out
 tempCodeRunnerFile.cpp
 .vscode/
-
+.cph/
+*.bin
 # Created by https://www.toptal.com/developers/gitignore/api/c++
 # Edit at https://www.toptal.com/developers/gitignore?templates=c++
 

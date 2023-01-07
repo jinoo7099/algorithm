@@ -19,33 +19,31 @@ int vis1[52][52];  // 가로
 int vis2[52][52];  // 세로
 int vis3[52][52];  // 칸
 
-void solve(int cur) {
-    if (cur == s) {
+void solve(int z) {
+    if (z == 81) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 cout << d[i][j] << " ";
             }
             cout << endl;
         }
-        return;
+        exit(0);
     }
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            if (d[i][j]) continue;
 
-            for (int k = 1; k <= 9; k++) {
-                if (vis1[i][k] || vis2[j][k] || vis3[i / 3 * 3 + j % 3][k]) continue;
+    int x = z / n;
+    int y = z % n;
 
-                vis1[i][k] = 1;
-                vis2[j][k] = 1;
-                vis3[i / 3 * 3 + j % 3][k] = 1;
-                d[i][j] = k;
-                solve(cur + 1);
-                vis1[i][k] = 0;
-                vis2[j][k] = 0;
-                vis3[i / 3 * 3 + j % 3][k] = 0;
-                d[i][j] = 0;
-            }
+    if (d[x][y]) {
+        solve(z + 1);
+    } else {
+        for (int i = 1; i <= 9; i++) {
+            if (vis1[x][i] || vis2[y][i] || vis3[x / 3 * 3 + y / 3][i]) continue;
+
+            vis1[x][i] = vis2[y][i] = vis3[x / 3 * 3 + y / 3][i] = 1;
+            d[x][y] = i;
+            solve(z + 1);
+            d[x][y] = 0;
+            vis1[x][i] = vis2[y][i] = vis3[x / 3 * 3 + y / 3][i] = 0;
         }
     }
 }
@@ -63,8 +61,6 @@ int main() {
                 vis1[i][k] = 1;
                 vis2[j][k] = 1;
                 vis3[i / 3 * 3 + j / 3][k] = 1;
-            } else {
-                s++;
             }
         }
     }

@@ -17,5 +17,19 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
+    string s;
+    cin >> s;
+    vector<string> v;
+
+    for (int i = 0; i < s.size(); i++) {
+        v.push_back(s.substr(i));
+    }
+
+    sort(v.begin(), v.end());
+
+    for (auto a : v) {
+        cout << a << endl;
+    }
+
     return 0;
 }

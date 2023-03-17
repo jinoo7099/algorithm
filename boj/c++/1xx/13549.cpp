@@ -46,7 +46,7 @@ int main() {
             q.push(cur + 1);
             vis[cur + 1] = vis[cur] + 1;
         }
-        if (cur - 1 >= 0 && vis[cur + 1] > vis[cur] + 1) {
+        if (cur - 1 >= 0 && vis[cur - 1] > vis[cur] + 1) {
             q.push(cur - 1);
             vis[cur - 1] = vis[cur] + 1;
         }

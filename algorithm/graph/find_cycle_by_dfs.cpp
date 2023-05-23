@@ -34,6 +34,24 @@ void dfs(int node) {
     finished[node] = true;
 }
 
+// int ans;
+// int vis[502];
+// bool isTree = true;
+// vector<int> adj[502];
+// void dfs_by_undirected_graph(int x, int par) {
+//     for (auto nxt : adj[x]) {
+//         if (nxt == par)
+//             continue;
+//         if (vis[nxt]) {
+//             isTree = false;
+//             continue;
+//         }
+
+//         vis[nxt] = 1;
+//         dfs(nxt, x);
+//     }
+// }
+
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(NULL);

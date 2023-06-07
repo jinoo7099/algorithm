@@ -14,6 +14,12 @@ const int dx[4] = {-1, 0, 1, 0};
 const int dy[4] = {0, 1, 0, -1};
 
 void solve() {
+    cout << "         ,r\'\"7" << endl;
+    cout << "r`-_   ,\'  ,/" << endl;
+    cout << " \\. \". L_r\'" << endl;
+    cout << "   `~\\/" << endl;
+    cout << "      |" << endl;
+    cout << "      |" << endl;
 }
 
 int main() {

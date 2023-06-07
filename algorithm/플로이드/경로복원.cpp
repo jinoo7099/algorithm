@@ -14,6 +14,7 @@ const int dy[4] = {0, 1, 0, -1};
 const int INF = 0x3f3f3f3f;
 int n, m;
 int d[105][105];
+int nxt[105][105];
 
 int main() {
     ios::sync_with_stdio(false);
@@ -35,7 +36,10 @@ int main() {
     for (int k = 1; k <= n; k++) {
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
-                d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
+                if (d[i][j] > d[i][k] + d[k][j]) {
+                    d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
+                    nxt[i][j] = nxt[i][k];
+                }
             }
         }
     }
@@ -47,6 +51,28 @@ int main() {
                 cout << d[i][j] << ' ';
         }
         cout << endl;
+    }
+
+    // 경로 복원
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            if (d[i][j] == 0 || d[i][j] == INF) {
+                cout << "0" << endl;
+                continue;
+            }
+
+            vector<int> path;
+            int st = i;
+            while (st != j) {
+                path.push_back(st);
+                st = nxt[st][j];
+            }
+            path.push_back(j);
+
+            cout << path.size() << endl;
+            for (auto x : path) cout << x << ' ';
+            cout << endl;
+        }
     }
     return 0;
 }

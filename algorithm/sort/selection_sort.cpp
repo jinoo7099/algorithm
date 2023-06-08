@@ -19,9 +19,8 @@ int main() {
                 min_index = j;
             }
         }
-        int tmp = arr[i];
-        arr[i] = arr[min_index];
-        arr[min_index] = tmp;
+
+        swap(arr[i], arr[min_index]);
     }
 
     for (int i = 0; i < N; i++) {

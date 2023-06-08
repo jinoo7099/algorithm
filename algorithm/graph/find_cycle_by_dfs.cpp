@@ -17,7 +17,7 @@ vector<int> adj[1002];
 
 int vis[1002];
 bool finished[1002];
-int node_order;
+int node_order; // 사이클 내 정점 개수
 int cycle;
 
 void dfs(int node) {
@@ -33,24 +33,6 @@ void dfs(int node) {
 
     finished[node] = true;
 }
-
-// int ans;
-// int vis[502];
-// bool isTree = true;
-// vector<int> adj[502];
-// void dfs_by_undirected_graph(int x, int par) {
-//     for (auto nxt : adj[x]) {
-//         if (nxt == par)
-//             continue;
-//         if (vis[nxt]) {
-//             isTree = false;
-//             continue;
-//         }
-
-//         vis[nxt] = 1;
-//         dfs(nxt, x);
-//     }
-// }
 
 int main() {
     ios::sync_with_stdio(false);

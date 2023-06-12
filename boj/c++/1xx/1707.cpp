@@ -1,75 +1,95 @@
-#include <bits/stdc++.h>
-
-#define ll long long
-#define pii pair<int, int>
-#define endl '\n'
-#define sp ' '
-#define fi first
-#define se second
-#define all(x) (x).begin(), (x).end()
+#include <iostream>
 
 using namespace std;
 
-const int dx[4] = {-1, 0, 1, 0};
-const int dy[4] = {0, 1, 0, -1};
+struct Node {
+    int node;
+    Node *nxt;
+};
 
-vector<int> adj[20002];
-int vis[20002];
+int k, v, e;
+
+Node head[20200];
+Node pool[200200 * 2];
+int vis[20200];
+int pcnt;
+
+void init() {
+    pcnt = 0;
+
+    for (int i = 1; i <= v; i++) {
+        head[i].nxt = 0;
+        vis[i] = 0;
+    }
+}
+
+void insert(int p, int c) {
+    Node *nd = &pool[pcnt++];
+    nd->node = c;
+
+    nd->nxt = head[p].nxt;
+    head[p].nxt = nd;
+}
+
+int dfs(int node, int color) {
+    vis[node] = color;
+
+    for (Node *p = head[node].nxt; p; p = p->nxt) {
+        // if (vis[p->node] == color) return 0;
+        // if (!vis[p->node]) {
+        // if (!dfs(p->node, 3 - color)) return 0;
+        // }
+
+        if (vis[p->node] == color) return 0;
+        if (!vis[p->node]) {
+            /* 3 - 1 = 2 <-> 3 - 2 = 1 */
+            if (!dfs(p->node, 3 - color)) return 0;
+        }
+    }
+
+    return 1;
+}
+
+void test() {
+    for (int i = 1; i <= v; i++) {
+        cout << "#" << i << ' ';
+        for (Node *p = head[i].nxt; p; p = p->nxt) {
+            cout << p->node << ' ';
+        }
+        cout << endl;
+    }
+}
+
+void solve() {
+    cin >> v >> e;
+
+    init();
+
+    for (int i = 0; i < e; i++) {
+        int p, c;
+        cin >> p >> c;
+
+        insert(p, c);
+        insert(c, p);
+    }
+
+    // test();
+    int flag = 0;
+    for (int i = 1; i <= v; i++) {
+        if (vis[i]) continue;
+
+        flag = dfs(i, 1);
+        if (!flag) break;
+    }
+
+    if (flag)
+        cout << "YES" << '\n';
+    else
+        cout << "NO" << '\n';
+}
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-
-    int k;
     cin >> k;
-
-    while (k--) {
-        int v, e;
-        cin >> v >> e;
-
-        // init
-        fill(vis, vis + 20001, 0);
-        for (int i = 0; i <= v; i++) {
-            adj[i].clear();
-        }
-
-        for (int i = 0; i < e; i++) {
-            int a, b;
-            cin >> a >> b;
-            adj[a].push_back(b);
-            adj[b].push_back(a);
-        }
-
-        int res = 0;
-
-        for (int st = 1; st <= v; st++) {
-            if (vis[st]) continue;
-            if (res > 2) break;
-
-            res++;
-            queue<int> q;
-            q.push(st);
-            vis[st] = 1;
-
-            while (q.size()) {
-                int cur = q.front();
-                q.pop();
-
-                for (auto nxt : adj[cur]) {
-                    if (vis[nxt]) continue;
-
-                    vis[nxt] = 1;
-                    q.push(nxt);
-                }
-            }
-        }
-
-        cout << res << endl;
-
-        if (res == 2)
-            cout << "YES" << endl;
-        else
-            cout << "NO" << endl;
-    }
+    while (k--) solve();
     return 0;
 }

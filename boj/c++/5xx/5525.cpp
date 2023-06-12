@@ -22,20 +22,8 @@ int main() {
     cin >> n >> m;
     cin >> s;
 
-    int size = 2 * n + 1;
-    for (int i = 0; i < m - size; i++) {
-        int k = 0;
-        if (s[i] == 'O') continue;
+    int sz = 2 * n + 1;
 
-        while (s[i + 1] == 'O' & s[i + 2] == 'I') {
-            k++;
-            if (k == n) {
-                k--;
-                ans++;
-            }
-            i += 2;
-        }
-    }
     cout << ans << endl;
     return 0;
 }

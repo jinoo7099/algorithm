@@ -1,8 +1,10 @@
-// 바킹독 해시
-#include <bits/stdc++.h>
+#include <assert.h>
+
+#include <iostream>
+#include <string>
 using namespace std;
 
-const int M = 1000003;
+const int M = 1000003;  // 101, 23
 const int a = 1000;
 
 const int MX = 500005;  // 최대 삽입 횟수
@@ -13,6 +15,7 @@ string key[MX];
 int val[MX];
 int unused = 0;
 
+// 롤링 해시
 int my_hash(string& s) {
     int h = 0;
     for (auto x : s)
@@ -30,7 +33,6 @@ int find(string k) {
         if (key[idx] == k) return idx;
         idx = nxt[idx];
     }
-
     return -1;
 }
 
@@ -44,6 +46,7 @@ void insert(string k, int v) {
     int h = my_hash(k);
     key[unused] = k;
     val[unused] = v;
+
     if (head[h] != -1) {
         nxt[unused] = head[h];
         pre[head[h]] = unused;
@@ -55,11 +58,10 @@ void insert(string k, int v) {
 void erase(string k) {
     int idx = find(k);
     if (idx == -1) return;
-
     if (pre[idx] != -1) nxt[pre[idx]] = nxt[idx];
     if (nxt[idx] != -1) pre[nxt[idx]] = pre[idx];
-
     int h = my_hash(k);
+    // 지우는 원소가 head일 경우 꼭 head[h]변경 해줘야됨
     if (head[h] == idx) head[h] = nxt[idx];
 }
 

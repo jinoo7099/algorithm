@@ -25,46 +25,12 @@ int my_hash(string k) {
 }
 
 int find(string k) {
-    int h = my_hash(k);
-    int idx = head[h];
-
-    while (idx != -1) {
-        if (key[idx] == k) return idx;
-        idx = nxt[idx];
-    }
-
-    return -1;
 }
 
 void insert(string k, int v) {
-    int idx = find(k);
-    if (idx != -1) {
-        val[idx] = v;
-        return;
-    }
-
-    int h = my_hash(k);
-    key[unused] = k;
-    val[unused] = v;
-
-    if (head[h] != -1) {
-        nxt[unused] = head[h];
-        pre[head[h]] = unused;
-    }
-
-    head[h] = unused;
-    unused++;
 }
 
 void erase(string k) {
-    int idx = find(k);
-    if (idx == -1) return;
-
-    if (pre[idx] != -1) nxt[pre[idx]] = nxt[idx];
-    if (nxt[idx] != -1) pre[nxt[idx]] = pre[idx];
-
-    int h = my_hash(k);
-    if (head[h] == idx) head[h] = nxt[idx];
 }
 
 void test() {
